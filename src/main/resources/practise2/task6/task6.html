@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let sides = Array;
+
+    for (let i = 0; i<3; i++){
+
+        let text = parseInt(prompt("enter side of triangle"));
+
+        if(String(text) == "NaN" || text<1){
+                 alert("'Incorrect data")
+        }
+
+        sides[i] = text;
+
+        if(i==2){
+            if(sides[0] + sides[1] <= sides[2] ||
+            sides[0] + sides[2] <= sides[1] ||
+            sides[2] + sides[1] <= sides[0] ){
+                alert("Incorrect data")
+            }
+        }
+    }
+
+    let p = (sides[0]+sides[1]+sides[2])/2;
+
+    console.log(Math.sqrt(p*(p-sides[0])*(p-sides[1])*(p-sides[2])).toFixed(3));
+
+    let a = sides[0] * sides[0];
+    let b = sides[1] * sides[1];
+    let c = sides[2] * sides[2];
+
+    if( a + b == c){
+        alert("Right triangle")
+    } else if (a + c  == b){
+        alert("Right triangle")
+    } else if (b + c  == a){
+        alert("Right triangle")
+    }
+
+</script>
+</body>
+
+
+</html>

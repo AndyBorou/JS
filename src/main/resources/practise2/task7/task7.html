@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let currentTimeHours = new Date().getHours();
+
+    switch (true) {
+        case 23>=currentTimeHours && currentTimeHours>=17:
+            alert( 'Доброго вечора' );
+            break;
+        case 11>=currentTimeHours && currentTimeHours>=5:
+            alert( 'Доброго ранку' );
+            break;
+        case 17>currentTimeHours && currentTimeHours>11:
+            alert( 'Доброго дня' );
+            break;
+        default:
+            alert( "Доброї ночі" );
+    }
+
+    if (23>=currentTimeHours && currentTimeHours>=17){
+        alert( 'Доброго вечора' );
+    } else if (11>=currentTimeHours && currentTimeHours>=5){
+        alert( 'Доброго ранку' );
+    } else if (17>currentTimeHours && currentTimeHours>11){
+        alert( 'Доброго дня' );
+    } else { alert("Доброї ночі") }
+
+</script>
+</body>
+
+
+</html>
