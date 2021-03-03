@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // task 1
+    let arr1 = [2, 3, 4, 5];
+    let res1 = 1;
+
+    for (let i of arr1) {
+        res1 = res1 * i;
+    }
+    alert(res1);
+
+    let i = 0;
+    res1 = 1;
+    while (arr1.length > i) {
+        res1 = res1 * arr1[i];
+        i++;
+    }
+
+    alert(res1);
+
+    // task 2
+    for (var j = 0; j < 16; j++) {
+        if (j == 0) {
+            continue;
+        }
+        if (j % 2 == 0) {
+            alert(j + ": is even!")
+        } else if (j % 2 > 0) {
+            alert(j + ": is odd!")
+        }
+    }
+
+    // task 3
+
+    let arr2 = [0, 0, 0, 0];
+    function randArray(arr) {
+
+        arr.forEach((x, i) => {arr[i] = Math.floor((Math.random() * 500) + 1)});
+        return arr;
+    }
+    alert(randArray(arr2));
+
+    // task 4
+
+    function raiseToDegree(a, b ) {
+        // I am not sure we can use this now
+
+        // return Math.pow(a, b);
+
+        let res = 1;
+
+        for (var j = 0; j < b; j++) {
+            res = res * a;
+        }
+
+        return res;
+    }
+
+    function startRaiseToDegreeProcess() {
+        let a = Math.round(parseFloat(prompt("enter base number")));
+        let b = Math.round(parseFloat(prompt("enter degree number")));
+
+        return raiseToDegree(a, b);
+    }
+
+    alert(startRaiseToDegreeProcess());
+
+    // task 5
+
+    function findMin(){
+        // I am not sure we can use this now
+
+        // let min = Math.min.apply(Math, arguments);
+        // return min;
+
+        let min;
+        for (let j = 0; j < arguments.length; j++) {
+            for (let k = j; k < arguments.length; k++) {
+                if (arguments[j] < arguments[k]){
+                    min = arguments[j];
+                }
+            }
+        }
+        return min;
+    }
+
+    alert(findMin(12, 14, 4, -4, 0.2));
+
+    //task 6
+
+    function  findUnique(arr){
+
+        // I am not sure we can use this now
+
+        //return new Set(arr).size == arr.length
+
+        for (let j = 0; j < arr.length-1; j++) {
+            for (let k = j+1; k < arr.length; k++) {
+                if (arr[j] == arr[k]){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    findUnique([1, 2, 3, 5, 3]);
+    findUnique([1, 2, 3, 5, 11]);
+
+    // task 7
+
+    function lastElem(arr, n){
+        return arr.slice(- n);
+    }
+
+
+    console.log(lastElem([3, 4, 10, -5],1));      // -5
+    console.log(lastElem([3, 4, 10, -5],2));   // [10, -5]
+    console.log(lastElem([3, 4, 10, -5],8));   // [3, 4, 10, -5]
+
+    // task 8
+
+    function toUpperCaseFirstSymbol(str) {
+        let arrStr = str.split(" ");
+        let newStr = new Array();
+        for (let s of arrStr){
+            if(s.length > 1) {
+                newStr.push(s[0].toUpperCase() + s.slice(1));
+            } else {
+                newStr.push(s[0].toUpperCase());
+            }
+        }
+
+        return newStr.join(" ");
+
+    }
+
+    alert(toUpperCaseFirstSymbol('i love java script'))
+</script>
+</body>
+</html>
