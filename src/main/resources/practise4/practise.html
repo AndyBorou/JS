@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // practise 1
+
+    function calcRectangleArea(width, height) {
+
+        if (typeof width != "number" || typeof height != "number") {
+            throw new TypeError("Entered values are not number");
+        } else {
+            return width * height;
+        }
+    }
+
+    function startCalc() {
+        try {
+            console.log(calcRectangleArea(2, 3));
+            console.log(calcRectangleArea("2", "3"));
+        } catch (exception) {
+            if(exception.name === "TypeError"){
+                alert("some parametters was not correct type");
+            }
+        }
+    }
+
+    startCalc();
+
+    // practise 2
+    // I don't understand clearly how to make this task
+    
+    function checkAge() {
+        let age = prompt("enter your age:");
+        let enterException;
+
+        try {
+            if (age == "") {
+                enterException = new TypeError("The field is empty! Please enter your age");
+                enterException.name = "EmptyValueError";
+                throw enterException;
+            } else if (isNaN(parseInt(age))){
+                enterException = new TypeError("You entered not a number! Please enter your age");
+                throw enterException;
+            } else if (parseInt(age)<14){
+                enterException = new TypeError("Your age is not enough You are not granted access!");
+                enterException.name = "InsufficientAgeError";
+                throw enterException;
+            } else {
+                alert("you are granted access")
+            }
+        }catch (exception) {
+            alert(exception.name +" "+ exception.message);
+        }
+    }
+
+    checkAge();
+
+    // practise 3
+
+    class MonthException extends Error {
+        constructor(message) {
+            super(message); // (1)
+            this.name = "MonthException"; // (2)
+        }
+    }
+
+    function showMonthName(month){
+
+        if (month<1 || month>12){
+            throw new MonthException("Incorrect month number");
+        }
+        const monthNames = [,"January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        return monthNames[month];
+    }
+
+    function getMonth() {
+        try {
+            alert(showMonthName(1));
+            alert(showMonthName(0));
+        } catch(exception) {
+            console.log(exception.name +" "+ exception.message);
+        }
+
+    }
+
+    getMonth();
+
+    // practise 4
+
+
+
+    let users = [{id:1, name:"A"}, {id:2, name:"B"}, {id:3, name:"C"} ];
+
+    function showUser(id) {
+        if(id<1){
+            let exception = new TypeError("ID must not be negative: " + id);
+            exception.name = "Error";
+            throw exception;
+        }
+
+        for(let user of users){
+            if(user.id == id){
+                return user;
+            }
+        }
+    }
+
+    function showUsers(idsArr) {
+
+        let userArr = new Array();
+
+        for(let id of idsArr){
+            let user;
+            try {
+                user = showUser(id);
+                if (user != undefined){
+                    userArr.push(user);
+                } else {console.log("user with id: " + id + " is not found")}
+
+            } catch (e) {
+                console.log(e.name +" " + e.message);
+            }
+
+        }
+        return userArr
+    }
+
+    showUsers([-1, 1, 0, 2, 3, 4])
+</script>
+</body>
+</html>
