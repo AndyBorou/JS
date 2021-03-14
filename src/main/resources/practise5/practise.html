@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // practise 1
+
+    let mentor = {
+        course: "JS fundamental",
+        duration: 3,
+        direction: "web-development"
+    };
+
+
+    function propsCount(currentObject) {
+        let lenght = 0;
+
+        for (let p in currentObject) {
+            lenght++;
+        }
+        return lenght;
+        // Object.keys(obj).length
+    }
+
+    alert(propsCount(mentor));
+
+    // practise 2
+
+    let user = {
+        age: 10,
+        name: "Karl",
+        lastName: "Face",
+        team: 1,
+        group: 2,
+        met: function () {
+
+        }
+    };
+
+    function showProps(currentObject) {
+        let propArray = new Array();
+
+        for (let [key, value] of Object.entries(currentObject)) {
+            propArray.push(value);
+        }
+
+        // for(key in currentObject) {
+        //     if(data.hasOwnProperty(key)) {
+        //         propArray.push(currentObject[key]);
+        //         //do something with value;
+        //     }
+        // }
+
+        return propArray;
+        // return Object.values(currentObject);
+    }
+
+    alert(showProps(user));
+
+    // practise 3
+
+    class Person {
+        constructor(name, surname) {
+            this.name = name;
+            this.surname = surname;
+        }
+
+        showFullName() {
+            return this.name + " " + this.surname;
+        }
+    }
+
+    class Student extends Person {
+        constructor(name, surname, year) {
+            super(name, surname);
+            this.currentCurse = calcCurrentCurse(year);
+            this.entryYear = year;
+
+
+        }
+
+        // #
+        showFullName(midleName) {
+            return super.showFullName() + " " + midleName;
+        }
+
+        showCourse() {
+            return this.currentCurse;
+        }
+
+        calcCurrentCurse(year) {
+
+            let yearInStady = new Date().getFullYear() - year;
+            let monthInStady = new Date().getMonth() - 7;
+            monthInStady = yearInStady * 11 + monthInStady;
+            yearInStady = Math.ceil(monthInStady / 11);
+
+            if (yearInStady > 6
+                || yearInStady <= 0) {
+                throw new TypeError("Entered year is not correct");
+            }
+            return yearInStady;
+        };
+    }
+
+    let stud1 = new Student("Petro", "Petrenko", 2017);
+    console.log(stud1.showFullName("Petrovych")); // Petrenko Petro Petrovych
+    console.log("Current course: " + stud1.showCourse());
+
+    // practise 4
+
+    class Worker {
+
+    #
+        experience = 1.2;
+
+        constructor(fullName, dayRate, workingDays) {
+            this.fullName = fullName;
+            this.dayRate = dayRate;
+            this.workingDays = workingDays;
+        }
+
+        getSalary() {
+            return this.dayRate * this.workingDays;
+        }
+
+        showSalary() {
+            console.log(this.fullName + " salary: " + this.getSalary());
+        }
+
+        getSalaryWithExperience() {
+            return Math.round(this.getSalary() * this.
+        #
+            experience
+        )
+            ;
+        }
+
+        showSalaryWithExperience() {
+            console.log(this.fullName + " salary: " + this.getSalaryWithExperience());
+        }
+
+        get showExp() {
+            return this.
+        #
+            experience;
+        }
+
+        set setExp(value) {
+            this.
+        #
+            experience = value;
+        }
+
+    }
+
+    // Example usage:
+    let worker1 = new Worker("John Johnson", 20, 23);
+    console.log(worker1.fullName);
+    worker1.showSalary();
+    console.log("New experience: " + worker1.showExp);
+    worker1.showSalaryWithExperience();
+    worker1.setExp = 1.5;
+    console.log("New experience: " + worker1.showExp);
+    worker1.showSalaryWithExperience();
+
+    let worker2 = new Worker("Andy Ander", 10, 18);
+    console.log(worker2.fullName);
+    worker2.showSalary();
+    console.log("New experience: " + worker2.showExp);
+    worker2.showSalaryWithExperience();
+    worker2.setExp = 1.3;
+    console.log("New experience: " + worker2.showExp);
+    worker2.showSalaryWithExperience();
+
+    let worker3 = new Worker("Tom Tomson", 30, 22);
+    console.log(worker3.fullName);
+    worker3.showSalary();
+    console.log("New experience: " + worker3.showExp);
+    worker3.showSalaryWithExperience();
+    worker3.setExp = 2.3;
+    console.log("New experience: " + worker3.showExp);
+    worker3.showSalaryWithExperience();
+
+    console.log("--------------------------------");
+
+    let workers = [worker1, worker2, worker3];
+    workers.sort((a, b) = > a.getSalaryWithExperience() - b.getSalaryWithExperience()
+    )
+    ;
+    workers.forEach((sortedWork) = > console.log(sortedWork.fullName + ": " + sortedWork.getSalaryWithExperience())
+    )
+    ;
+
+    // task 5
+
+    class GeometricFigure {
+        getArea() {
+            return 0;
+        }
+
+        toString() {
+            return this.constructor.name;
+        }
+    }
+
+    class Triangle extends GeometricFigure {
+        constructor(base, height) {
+            super();
+            this.base = base;
+            this.height = height;
+        }
+
+        getArea() {
+            return this.base * this.height * 0.5;
+        }
+
+    }
+
+    class Square extends GeometricFigure {
+        constructor(side) {
+            super();
+            this.side = side;
+        }
+
+        getArea() {
+            return this.side * this.side;
+        }
+    }
+
+    class Circle extends GeometricFigure {
+        constructor(radius) {
+            super();
+            this.radius = radius;
+        }
+
+        getArea() {
+            return Math.PI * this.radius *  this.radius;
+        }
+    }
+
+    let figures = [new Triangle(4, 5), new Square(7), new Circle(5)];
+
+
+    function handleFigures(figures) {
+
+        let totalArea = 0;
+
+        for(let figure of figures){
+            if(! figure instanceof  GeometricFigure){
+                console.log(figure.toString() +" - doesn't instance of " + GeometricFigure.toString());
+            } else{
+                totalArea += figure.getArea();
+                console.log(figure.toString() +" area is " + figure.getArea());
+            }
+        }
+
+        console.log("totalArea " + totalArea);
+    }
+
+    handleFigures(figures);
+
+
+</script>
+</body>
+</html>
