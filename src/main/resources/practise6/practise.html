@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+
+<div id="test">First</div>
+
+<img class="image" src="dog.jpg">
+
+<h2>Article header</h2>
+<div id="text">
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+    <p>Third paragraph</p>
+</div>
+<p>Another text</p>
+
+<ul id="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+
+
+<h1>I'am a big header!!!</h1>
+<div id="myDiv">
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+    <p>Third paragraph</p>
+    <p>Fourth paragraph</p>
+</div>
+<ul id="myList">
+    <li>Make</li>
+    <li>me</li>
+    <li>horizontal!</li>
+</ul>
+<span>Make me invisible, please!</span>
+
+
+<script>
+
+    // task 1
+    function replaceText() {
+        //  document.body.children[0].innerHTML= "Last";
+        //  document.body.firstElementChild.innerHTML ="Last";
+        document.getElementById("test").innerHTML = "Last"
+    }
+
+    setTimeout(replaceText, 1000);
+
+    // task 2
+
+    function replacePic() {
+        let pic = document.getElementsByClassName("image")[0];
+        pic.src = "cat.jpg";
+        alert(document.getElementsByClassName("image")[0].src);
+    }
+
+    setTimeout(replacePic, 2000);
+
+    // task 3
+
+    function getElements() {
+        //let pic = document.querySelectorAll("div[id='text']")[0].getElementsByTagName("p");
+        let el = document.querySelectorAll("div>p");
+
+        for (let i = 0; i < el.length; i++) {
+            console.log("Selector text " + i + ": " + el[i].innerText);
+        }
+    }
+
+    getElements();
+
+    // task 4
+
+    function getElements() {
+        let elementsArr = document.getElementById("list").getElementsByTagName("li");
+        // let elementsArr = document.getElementById("list").children;
+        let newArr = new Array();
+        let l = elementsArr.length;
+        for (var i = 0; i < l; i++) {
+            newArr.push(elementsArr[i].innerText);
+            l = l - 1;
+            if (i != l) {
+                newArr.push(elementsArr[l].innerText);
+            }
+        }
+
+        console.log(newArr.join(", "));
+
+//----------------------------
+        let elementsArr2 = document.querySelectorAll("ul[id='list']>li");
+
+        let newArr2 = new Array();
+
+        let l2 = elementsArr2.length;
+        let i2 = 0;
+        do{
+            l2 -- ;
+            newArr2.push(elementsArr2[i2].innerText);
+            if (i2 == l2) { break;}
+            newArr2.push(elementsArr2[l2].innerText);
+            i2 ++;
+        }while (i2 != l2);
+
+
+        console.log(newArr2.join(", "));
+
+    }
+
+    // task 5
+
+    function textUpdate() {
+
+        let h1 = document.getElementById("myDiv").previousElementSibling;
+        h1.style = "background-color: lawngreen;";
+
+        let listEl = document.getElementById("myDiv").children;
+
+
+        listEl[0].style.fontWeight = "900";
+        listEl[1].style.color = 'red';
+        listEl[2].style.textDecoration = "underline";
+        listEl[3].style.fontStyle = "italic";
+
+
+        listEl = document.querySelectorAll("ul[id='myList']>li");
+
+        let alltext = "";
+        for (let elem of listEl) {
+            alltext = alltext + elem.innerText;
+            elem.remove();
+        }
+
+        let newLi = document.createElement('li');
+        newLi.innerText = alltext;
+        document.getElementById('myList').append(newLi);
+
+
+        document.getElementById("myList").nextElementSibling.style.display = 'none';
+    }
+
+    setTimeout(textUpdate, 5000);
+
+</script>
+</body>
+
+
+</body>
+
+
+</html>
