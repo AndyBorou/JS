@@ -149,6 +149,21 @@
 
     setTimeout(textUpdate, 5000);
 
+    // task 6
+
+    let myMain = document.createElement('main');
+    myMain.className = "mainClass check item";
+
+    let myDiv = document.createElement('div');
+    myDiv.id = "myDiv";
+
+    let myP = document.createElement('p');
+    myP.innerText = "First paragraph";
+
+    myDiv.append(myP);
+    myMain.append(myDiv);
+    document.body.append(myMain);
+
 </script>
 </body>
 
