@@ -115,7 +115,7 @@
 
     class Worker {
 
-        experience = 1.2;
+        #experience = 1.2;
 
         constructor(fullName, dayRate, workingDays) {
             this.fullName = fullName;
@@ -132,9 +132,7 @@
         }
 
         getSalaryWithExperience() {
-            return Math.round(this.getSalary() * this.experience
-        )
-            ;
+            return Math.round(this.getSalary() * this.#experience) ;
         }
 
         showSalaryWithExperience() {
@@ -142,11 +140,11 @@
         }
 
         get showExp() {
-            return this. experience;
+            return this.#experience;
         }
 
         set setExp(value) {
-            this.experience = value;
+            this.#experience = value;
         }
 
     }
