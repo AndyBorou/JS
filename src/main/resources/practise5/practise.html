@@ -77,7 +77,7 @@
     class Student extends Person {
         constructor(name, surname, year) {
             super(name, surname);
-            this.currentCurse = calcCurrentCurse(year);
+            this.currentCurse = this.calcCurrentCurse(year);
             this.entryYear = year;
 
 
@@ -115,7 +115,6 @@
 
     class Worker {
 
-    #
         experience = 1.2;
 
         constructor(fullName, dayRate, workingDays) {
@@ -133,9 +132,7 @@
         }
 
         getSalaryWithExperience() {
-            return Math.round(this.getSalary() * this.
-        #
-            experience
+            return Math.round(this.getSalary() * this.experience
         )
             ;
         }
@@ -145,15 +142,11 @@
         }
 
         get showExp() {
-            return this.
-        #
-            experience;
+            return this. experience;
         }
 
         set setExp(value) {
-            this.
-        #
-            experience = value;
+            this.experience = value;
         }
 
     }
@@ -189,10 +182,10 @@
     console.log("--------------------------------");
 
     let workers = [worker1, worker2, worker3];
-    workers.sort((a, b) = > a.getSalaryWithExperience() - b.getSalaryWithExperience()
+    workers.sort((a, b) => a.getSalaryWithExperience() - b.getSalaryWithExperience()
     )
     ;
-    workers.forEach((sortedWork) = > console.log(sortedWork.fullName + ": " + sortedWork.getSalaryWithExperience())
+    workers.forEach((sortedWork) => console.log(sortedWork.fullName + ": " + sortedWork.getSalaryWithExperience())
     )
     ;
 
