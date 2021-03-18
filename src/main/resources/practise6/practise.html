@@ -41,7 +41,11 @@
     <li>me</li>
     <li>horizontal!</li>
 </ul>
+
 <span>Make me invisible, please!</span>
+
+<input type="text" id="input1" value="Text1">
+<input type="text" id="input2" value="Text2">
 
 
 <script>
@@ -148,8 +152,23 @@
     }
 
     setTimeout(textUpdate, 5000);
-
     // task 6
+
+
+    let text1 = prompt();
+    let text2 = prompt();
+
+    let el1 = document.getElementById("input1");
+    el1.value = text1;
+
+    let el2 = document.getElementById("input2")
+        el2.value = text2;
+
+    el1.value = text2;
+    el2.value = text1;
+
+
+    // task 7
 
     let myMain = document.createElement('main');
     myMain.className = "mainClass check item";

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://www.w3.org/TR/2013/REC-css-style-attr-20131107/" type="text/css"/>
+</head>
+<body>
+
+<p style="font-style: 'Comic Sans MS'" id ='text'>I learning JavaScript events!</p>
+<div>
+    <button id="myButton">Change style!</button>
+</div>
+
+
+
+<script>
+
+    // 1. За допомогою методів об’єкта window створити:
+    //     1) нове вікно розміром 300х300 пікселів.
+    // 2) із затримкою 2 сек змініть розміри вікна на 500х500 пікселів
+    // 3) із затримкою 2 сек перемістіть вікно в точку з координатами (200, 200)
+    // 4) із затримкою 2 сек закрийте вікно.
+
+    let myNewWindow;
+    function windowWork() {
+        myNewWindow = window.open("w3schools", "width=300,height=300, left=700,top=200");
+        setTimeout(myNewWindow.window.resizeTo, 2000, 500, 500);
+        setTimeout(myNewWindow.moveTo, 5000, 200, 200);
+        setTimeout(myNewWindow.close, 9000);
+    }
+
+    // напишіть функцію changeCSS(), яка спрацьовуватиме по кліку на кнопку і змінюватиме с
+    // тиль вмісту тега <p>: колір шрифту – оранжевий, розмір шрифту 20 пс,
+    //     шрифт сімейства "Comic Sans MS".
+
+    function changeStyle() {
+        let el = document.getElementById("text");
+        el.style.backgroundColor = '#4CAF50';
+        el.style.color = 'orange';
+        el.style.fontSize= '20pc';
+        el.style.fontStyle = "Comic Sans MS";
+    }
+
+
+    document.getElementById("myButton").onclick = changeStyle;
+
+
+</script>
+</body>
+</html>
