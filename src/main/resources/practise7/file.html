@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="http://www.w3.org/TR/2013/REC-css-style-attr-20131107/" type="text/css"/>
+    <link rel="stylesheet" href="https://www.w3.org/TR/css-fonts-3/" type="text/css"/>
 </head>
 <body>
 
-<p style="font-style: 'Comic Sans MS'" id ='text'>I learning JavaScript events!</p>
+<p id ='text'>I learning JavaScript events!</p>
 <div>
     <button id="myButton">Change style!</button>
 </div>
 
-
+<div id ="div2">
+    <button id="myButton1">button1</button>
+    <button id="myButton2">button2</button>
+    <button id="myButton3">button3</button>
+    <a id="link1" href="url">link text</a>
+</div>
 
 <script>
 
@@ -22,13 +27,19 @@
     // 3) із затримкою 2 сек перемістіть вікно в точку з координатами (200, 200)
     // 4) із затримкою 2 сек закрийте вікно.
 
-    let myNewWindow;
+
     function windowWork() {
-        myNewWindow = window.open("w3schools", "width=300,height=300, left=700,top=200");
-        setTimeout(myNewWindow.window.resizeTo, 2000, 500, 500);
-        setTimeout(myNewWindow.moveTo, 5000, 200, 200);
-        setTimeout(myNewWindow.close, 9000);
+        let myNewWindow = window.open("", "", "width=300,height=300, left=700,top=200");
+        setTimeout(function (a, b){
+            myNewWindow.resizeTo(a, b);
+            setTimeout(function (a, b){
+                myNewWindow.moveTo(a, b);
+                setTimeout(()=>myNewWindow.close(), 2000);
+            }, 2000, 200, 500);
+        }, 2000, 500, 500);
+
     }
+    //windowWork();
 
     // напишіть функцію changeCSS(), яка спрацьовуватиме по кліку на кнопку і змінюватиме с
     // тиль вмісту тега <p>: колір шрифту – оранжевий, розмір шрифту 20 пс,
@@ -39,12 +50,57 @@
         el.style.backgroundColor = '#4CAF50';
         el.style.color = 'orange';
         el.style.fontSize= '20pc';
-        el.style.fontStyle = "Comic Sans MS";
+        el.style.fontStyle = "Comic Sans MS"//"Italic"; //have not connected css style
+        setTimeout(()=>{el.removeAttribute("style")}, 3000);
     }
-
 
     document.getElementById("myButton").onclick = changeStyle;
 
+    // 3. Задано сторінку з 3 кнопками і 1 лінкою. Напишіть Javascript код і реалізуйте HTML-сторінку
+    // з відповідними подіями на кожному елементові:
+    //     1) 1-ша кнопка – при кліку на неї колір фону сторінки міняється на синій
+    // 2) 2-га кнопка – при подвійному кліку на неї колір фону сторінки міняється на рожевий
+    // 3) 3-я кнопка – при натисненні і утримуванні кнопки колір фону сторінки стає коричневий. При відпусканні – білий.
+    // 4) При наведенні на лінку – колір фону стає жовтим, при відведенні – білим.
+
+
+    function changingByButton1() {
+        let el = document.getElementById("div2"); // instead all page
+        el.style.backgroundColor = 'blue';
+    }
+
+    function changingByButton2() {
+        let el = document.getElementById("div2"); // instead all page
+        el.style.backgroundColor = 'pink';
+    }
+
+    function changingByButton3_press() {
+        let el = document.getElementById("div2"); // instead all page
+        el.style.backgroundColor = 'brown';
+    }
+
+    function changingByButton3_out() {
+        let el = document.getElementById("div2"); // instead all page
+        el.style.backgroundColor = 'white';
+    }
+
+    function changingByLink_over() {
+        let el = document.getElementById("div2"); // instead all page
+        el.style.backgroundColor = 'orange';
+    }
+
+    function changingByLink_out() {
+        let el = document.getElementById("div2"); // instead all page
+        el.style.backgroundColor = 'white';
+    }
+
+    document.getElementById("myButton1").onclick = changingByButton1;
+    document.getElementById("myButton2").ondblclick = changingByButton2;
+    document.getElementById("myButton3").onmousedown = changingByButton3_press;
+    document.getElementById("myButton3").onmouseup = changingByButton3_out;
+
+    document.getElementById("link1").onmouseover = changingByLink_over;
+    document.getElementById("link1").onmouseout = changingByLink_out;
 
 </script>
 </body>
