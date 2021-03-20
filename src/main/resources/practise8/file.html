@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<h2 class="head">header1</h2>
+<h2 class="head">header2 <span class="inner">inner elem1</span></h2>
+<h2>header3</h2>
+<h2 class="head">header4<span>inner elem2</span></h2>
+<h2>header5</h2>
+
+<div id="div1">
+    <input type="checkbox" id="el1" name="el1">
+    <label for="el1">el1</label>
+    <input type="checkbox" id="el2" name="el2">
+    <label for="el2">el2</label>
+    <input type="checkbox" id="el3" name="el3">
+    <label for="el3">el3</label>
+    <input type="checkbox" id="el4" name="el4">
+    <label for="el4">el4</label>
+    <input type="checkbox" id="el5" name="el5">
+    <label for="el5">el5</label>
+    <input type="checkbox" id="el6" name="el6">
+    <label for="el6">el6</label>
+</div>
+
+<script>
+
+    // 1. Напишіть функцію, яка перевірятиме чи перший символ
+    // в рядку написаний в верхньому регістрі, чи ні.
+
+    function upperCase(text){
+        let regExp = /^([A-Z]){1}/g;
+        let res = regExp.test(text);
+
+        if(res){
+            console.log("String's starts with uppercase character");
+        } else {
+            console.log("String's not starts with uppercase character");
+        }
+        console.log()
+    }
+
+    upperCase('regexp');
+    upperCase('RegExp');
+
+
+    // 2. Напишіть функцію, яка приймає рядкові дані і виконує перевірку на їх
+    // відповідність емейлу. Валідними вважаються всі символи на різних позиціях.
+
+    function checkEmailSimple(text){
+        let regExp = /^\w{3,20}\@[a-z]{3,10}\.[a-z]{3,5}$/g;
+        return regExp.test(text);
+    }
+
+    checkEmailSimple("Qmail2@gmail.com");
+
+    // 3. Для заданої сторінки використовуючи бібліотеку jQuery знайдіть всі <h2>
+    // з класом head, зробіть для них зелений колір фону, потім серед знайдених
+    // елементів знайдіть елементи з класом inner і поставте їм розмір шрифту 35px.
+
+    //     .	<h2 class="head">header1</h2>
+    //     <h2 class="head">header2 <span class="inner">inner elem1</span></h2>
+    // <h2>header3</h2>
+    // <h2 class="head">header4<span>inner elem2</span></h2>
+    // <h2>header5</h2>
+    let els = $("h2.head");
+    setTimeout(() => {els.css("backgroundColor", "green")}, 2000);
+    setTimeout(() => {els.find(".inner").css("fontSize", "35px");}, 4000);
+
+
+    // 4. На HTML-сторінці є 6 чекбоксів. Використовуючи бібліотеку jQuery,
+    //     напишіть скріпт, який після того, як користувач позначив будь-які 3
+    // чекбокси, всі чекбокси робить неактивними.
+
+    function grayer(){
+        $("#div1").find("input").not("input [checked=true]").prop( "disabled", true );
+    }
+
+    $("#div1").find("input").on("click", grayer);
+
+    // let country = document.getElementById("div1");
+    // country.addEventListener("click", grayer);
+
+
+    // 5. Напишіть регулярний вираз, який в рядковому тексті 2 підстрічки буде міняти місцями.
+
+    function replacer(text){
+        let arr = text.split(" ");
+        arr.reverse();
+        return arr.join(", ");
+    }
+
+    replacer("Java Script");
+
+
+//     6. Напишіть функцію, яка приймає рядкові дані і виконує перевірку на їх відповідність емейлу.
+//         Вимоги:
+//     •  Цифри (0-9).
+// •  Тільки латинські літери в великому (A-Z) і малому (a-z) регістрах.
+// •  В тілі емейла допустимі лишеі символи “_” і “-”. Але вони не можуть бути 1-им символом емейлу.
+//  •  Символ “-” не може повторюватися.
+
+    function checkEmail(text){
+        let regExp = /^\w{1,20}\-?\w{1,20}\@[a-z]{3,10}\.[a-z]{3,5}/g;
+        let res = regExp.test(text);
+
+        if(res){
+            console.log("Email is correct!");
+        } else {
+            console.log("Email is not correct!");
+        }
+        console.log()
+
+    }
+
+    checkEmail('my_mail@gmail.com');
+    checkEmail('#my_mail@gmail.com');
+
+
+    // 7. Напишіть функцію, яка перевіряє правильність логіна.
+    //     Правильний логін - рядок від 2 до 10 символів,
+    //     що містить лише букви та цифри, номер не може бути першим.
+    //     Функція має приймати рядок і знаходити усі числа в цьому рядку,
+    //     включаючи числа з плаваючою комою (наприклад, 3.4).
+
+    function checkLogin(text){
+        let regExp1 = /^[^\d][a-zA-Z0-9\.]{1,19}$/;
+
+        let res = regExp1.test(text);
+
+        console.log(res);
+
+        let regExp2 = /(\d+\.?\d+)|\d/g;
+
+        let res2 = text.match(regExp2);
+
+        console.log(res2);
+
+    }
+
+        checkLogin('ee1.1ret3');
+    // true
+    // 1.1, 3
+
+    checkLogin('ee1*1ret3');
+    // false
+    // 1, 1, 3
+
+
+</script>
+</body>
+</html>
