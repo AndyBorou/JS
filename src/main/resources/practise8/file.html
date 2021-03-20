@@ -78,7 +78,12 @@
     // чекбокси, всі чекбокси робить неактивними.
 
     function grayer(){
-        $("#div1").find("input").not("input [checked=true]").prop( "disabled", true );
+        let listEl = $("#div1").find("input:checked");
+        if(listEl.length  > 0){
+            $("#div1").find("input").not("input:checked").prop( "disabled", true );
+        } else {
+            $("#div1").find("input").not("input:checked").prop( "disabled", false );
+        }
     }
 
     $("#div1").find("input").on("click", grayer);
