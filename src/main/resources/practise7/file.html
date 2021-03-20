@@ -19,6 +19,36 @@
     <a id="link1" href="url">link text</a>
 </div>
 
+
+<select name="name" id="name">
+    <option value="Peter">Peter</option>
+    <option value="John">John</option>
+    <option value="Alise">Alise</option>
+    <option value="Alex">Alex</option>
+    <option value="Iren">Iren</option>
+</select>
+<button id="myButton4">choose and delete</button>
+
+<div>
+    <button id="myButton5">Live button</button>
+<ul id="list">
+</ul>
+</div>
+
+<div id="div1"></div>
+
+<select name="country" id="country">
+    <option value="ger">Germany</option>
+    <option value="usa">USA</option>
+    <option value="ukr">Ukraine</option>
+</select>
+
+<select name="cities" id="cities"></select>
+<p></p>
+<span id="span1"></span>
+<span id="span2"></span>
+
+
 <script>
 
     // 1. За допомогою методів об’єкта window створити:
@@ -39,9 +69,9 @@
         }, 2000, 500, 500);
 
     }
-    //windowWork();
+    windowWork();
 
-    // напишіть функцію changeCSS(), яка спрацьовуватиме по кліку на кнопку і змінюватиме с
+    //2 напишіть функцію changeCSS(), яка спрацьовуватиме по кліку на кнопку і змінюватиме с
     // тиль вмісту тега <p>: колір шрифту – оранжевий, розмір шрифту 20 пс,
     //     шрифт сімейства "Comic Sans MS".
 
@@ -63,44 +93,176 @@
     // 3) 3-я кнопка – при натисненні і утримуванні кнопки колір фону сторінки стає коричневий. При відпусканні – білий.
     // 4) При наведенні на лінку – колір фону стає жовтим, при відведенні – білим.
 
+    class Actions {
+         changingByButton1() {
+            let el = document.getElementById("div2"); // instead all page
+            el.style.backgroundColor = 'blue';
+        }
 
-    function changingByButton1() {
-        let el = document.getElementById("div2"); // instead all page
-        el.style.backgroundColor = 'blue';
+         changingByButton2() {
+            let el = document.getElementById("div2"); // instead all page
+            el.style.backgroundColor = 'pink';
+        }
+
+         changingByButton3_press() {
+            let el = document.getElementById("div2"); // instead all page
+            el.style.backgroundColor = 'brown';
+        }
+
+         changingByButton3_out() {
+            let el = document.getElementById("div2"); // instead all page
+            el.style.backgroundColor = 'white';
+        }
+
+         changingByLink_over() {
+            let el = document.getElementById("div2"); // instead all page
+            el.style.backgroundColor = 'orange';
+        }
+
+         changingByLink_out() {
+            let el = document.getElementById("div2"); // instead all page
+            el.style.backgroundColor = 'white';
+        }
     }
 
-    function changingByButton2() {
-        let el = document.getElementById("div2"); // instead all page
-        el.style.backgroundColor = 'pink';
+    let actions = new Actions();
+    document.getElementById("myButton1").onclick = actions.changingByButton1;
+    document.getElementById("myButton2").ondblclick = actions.changingByButton2;
+    document.getElementById("myButton3").onmousedown = actions.changingByButton3_press;
+    document.getElementById("myButton3").onmouseup = actions.changingByButton3_out;
+
+    document.getElementById("link1").onmouseover = actions.changingByLink_over;
+    document.getElementById("link1").onmouseout = actions.changingByLink_out;
+
+    // 4. Реалізуйте програму, яка по натисканню на кнопку видалятиме обраний
+    // елемент випадаючого списку. Можуть видалятися всі елементи в будь-якому порядку.
+
+    function removeEl() {
+        let elements = document.getElementById("name");
+        let element = elements.options[elements.selectedIndex];
+        element.remove();
     }
 
-    function changingByButton3_press() {
-        let el = document.getElementById("div2"); // instead all page
-        el.style.backgroundColor = 'brown';
+    document.getElementById("myButton4").onclick = removeEl;
+
+    // 5. Реалізуйте програму, яка по натисканню на кнопку виводитиме повідомлення
+    // "I was pressed!", при наведенні на кнопку виводитиме повідомлення "Mouse on me!",
+    //     а при відведенні курсора миші виводитиме повідомлення "Mouse is not on me!".
+
+
+    class ActionsLisener {
+
+        pressButton() {
+            let el = document.getElementById("list"); // instead all page
+            let liLast = document.createElement('li');
+            liLast.innerText = "I was pressed";
+            el.prepend(liLast);
+
+            let listEl = el.children;
+            let arrLenght = listEl.length;
+            if(arrLenght>6){
+                listEl[arrLenght-1].remove()
+            }
+        }
+
+        mouseHover() {
+            let el = document.getElementById("list"); // instead all page
+            let liLast = document.createElement('li');
+            liLast.innerText = "Mouse on me";
+            el.prepend(liLast);
+
+            let listEl = el.children;
+            let arrLenght = listEl.length;
+            if(arrLenght>6){
+                listEl[arrLenght-1].remove()
+            }
+        }
+
+        mouseOut() {
+            let el = document.getElementById("list"); // instead all page
+            let liLast = document.createElement('li');
+            liLast.innerText = "Mouse IS on me";
+            el.prepend(liLast);
+
+            let listEl = el.children;
+            let arrLenght = listEl.length;
+            if(arrLenght>6){
+                listEl[arrLenght-1].remove()
+            }
+        }
     }
 
-    function changingByButton3_out() {
-        let el = document.getElementById("div2"); // instead all page
-        el.style.backgroundColor = 'white';
+    let actionsLisener = new ActionsLisener();
+    document.getElementById("myButton5").onclick = actionsLisener.pressButton;
+    document.getElementById("myButton5").onmouseover = actionsLisener.mouseHover;
+    document.getElementById("myButton5").onmouseout = actionsLisener.mouseOut;
+
+    // 6. Реалізуйте програму, яка відслідковуватиме зміну розміру
+    // (ширини і висоти) вікна браузера і виводитиме на поточну сторінку
+    // при її розтязі/стисканні відповідні значення.
+
+    function showSize() {
+        let el = document.getElementById("div1");
+        el.innerText = "Width: " + window.innerWidth + " Height: " + window.innerHeight;
     }
 
-    function changingByLink_over() {
-        let el = document.getElementById("div2"); // instead all page
-        el.style.backgroundColor = 'orange';
+    window.addEventListener('resize', showSize);
+
+    //7. На сторінці потрібно реалізувати 2 випадаючих списки.
+    // У першому містяться назви країн, у другому – назви міст.
+    // Реалізувати роботу таким чином, щоб коли вибирається з
+    // лівого випадаючого списку певна країна - в правому випадаючому
+    // списку з'являлися міста цієї країни. Список міст формується динамічно,
+    // через JavaScript. Також потрібно нижче вивести назву обраної країни і місто.
+
+    let map = new Map();
+    map.set("Germany", [["Berlin",  "br"], ["Hamburg", "hm"], ["Munich", "mn"]]);
+    map.set("Ukraine", [["Kyiv",  "kv"], ["Kharkiv", "kh"], ["Donetsk", "dn"]]);
+    map.set("USA", [["New York City",  "NYC"], ["Los Angeles", "LA"], ["Chicago", "Ch"]]);
+
+    function addElementsToCities( parent, name, code ) {
+
+        let el = document.createElement('option');
+        el.value = code;
+        el.innerText = name;
+        parent.prepend(el);
     }
 
-    function changingByLink_out() {
-        let el = document.getElementById("div2"); // instead all page
-        el.style.backgroundColor = 'white';
+    function configureCities(cities) {
+
+        let options = document.getElementById("cities");
+        options.innerHTML = "";
+
+        for (let el of cities){
+            addElementsToCities(options, el[0], el[1]);
+        }
     }
 
-    document.getElementById("myButton1").onclick = changingByButton1;
-    document.getElementById("myButton2").ondblclick = changingByButton2;
-    document.getElementById("myButton3").onmousedown = changingByButton3_press;
-    document.getElementById("myButton3").onmouseup = changingByButton3_out;
+    function updateCountryText() {
+        let elements = document.getElementById("country");
+        let element = elements.options[elements.selectedIndex];
+        document.getElementById("span1").innerText = element.textContent || element.innerText;
+        document.getElementById("span2").innerText = "";
+        return element.textContent;
+    }
 
-    document.getElementById("link1").onmouseover = changingByLink_over;
-    document.getElementById("link1").onmouseout = changingByLink_out;
+    function addSities() {
+        let selectedCountry = updateCountryText();
+        let cities = map.get(selectedCountry);
+        configureCities(cities);
+    }
+
+    function updateCity() {
+        let elements = document.getElementById("cities");
+        let element = elements.options[elements.selectedIndex];
+        document.getElementById("span2").innerText = element.textContent || element.innerText;
+    }
+
+    let country = document.getElementById("country");
+    country.addEventListener("change", addSities);
+
+    let cities = document.getElementById("cities");
+    cities.addEventListener("change", updateCity);
 
 </script>
 </body>
