@@ -45,13 +45,12 @@
 
     // task 4
 
-
-        let server = {
-            data: 0,
-            convertToString: function (callback) {
-                callback(() => this.data + "")
-            }
-        };
+    let server = {
+        data: 0,
+        convertToString: function (callback) {
+            callback(() => this.data + "")
+        }
+    };
 
     let client = {
         server: server,
@@ -66,7 +65,25 @@
     };
     client.calc(123);
     console.log(client.result); // "123"
-    console.log(typeof client.result); //String
+    console.log(typeof client.result);
+
+    // task 5
+    
+    function mapBuilder (keysArray, valuesArrays) {
+        let map = new Map();
+        for (var i = 0; i < keysArray.length; i++) {
+            map.set(keysArray[i], valuesArrays[i]);
+        }
+        return map;
+    }
+
+    let keys = [1, 2, 3, 4];
+    let values = ["div", "span", "b", "i"];
+    let map = mapBuilder(keys, values);
+    console.log(map.size); // 4
+    console.log(map.get(2)); // "span"
+
+
 
 </script>
 </body>
