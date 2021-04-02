@@ -34,11 +34,11 @@ function calcArrProduct(arr){
             if(typeof i == "number"){
                 result *=i;
             } else {
-                // reject(new Error("Error! Incorrect array!"))
+                reject(new Error("Error! Incorrect array!"))
                 // or
                 // throw new Error("Error! Incorrect array!")
                 // or
-                resolve("Error! Incorrect array!");
+                //resolve("Error! Incorrect array!");
             }
 
         }
@@ -53,13 +53,23 @@ calcArrProduct([5,"user2", 7, 12]).then(result => console.log(result));
     // ====================== task 3 =================
 
 const delay = (i, time) => new Promise( (resolve, reject) => setTimeout(() => resolve(i), time));
-let timeDelay = () => Math.floor(Math.random() * 10);
+let timeDelay = () => Math.floor(Math.random() * 1000);
 async function showNumbers() {
     for (let i = 0; i < 10; i++) {
 
         await delay(i, timeDelay()).then(console.log);
         delay(i, timeDelay()).then(console.log); // why this doesn't work?
 
+    }
+}
+
+
+let prom = Promise.resolve();
+function showNumbers() {
+    for (let i = 0; i < 10; i++) {
+
+        prom = prom.then(()=>delay(i, timeDelay())).then(console.log);
+        prom.then(()=>delay(i, timeDelay())).then(console.log); // why this doesn't work?
 
     }
 }
