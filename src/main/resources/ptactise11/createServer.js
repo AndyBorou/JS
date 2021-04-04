@@ -22,7 +22,7 @@ fs.readFile('./file.html', function (err, html) {
 
     // Send the response body as "Testing NodeJS server"
     response.end('Testing NodeJS server\n');
-}).listen(8000);
+}).listen(5000);
 });
 
 // Console will print the message

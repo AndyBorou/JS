@@ -11,7 +11,7 @@ response.sendFile(__dirname + '/file.html')
 
 app.get("/2", (request, response) => {
 
-    response.(msg(os.hostname()))
+    response.send(msg(os.hostname()))
 })
 
 app.listen(port, (err) => {
