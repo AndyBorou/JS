@@ -43,7 +43,7 @@
 
       xhr.open('GET', 'getBooks.json', true);
 
-      xhr.onreadystatechange = function() { // (3)
+      xhr.onreadystatechange = function() {
         if (xhr.readyState != 4) return;
 
         if (xhr.status != 200) {
@@ -51,6 +51,7 @@
           alert('Error ' + xhr.status + ': ' + xhr.statusText);
         } else {
           // display result
+          document.getElementById("button2").remove();
           document.getElementById("dataStorage2").innerHTML = xhr.responseText;
         }
       };
