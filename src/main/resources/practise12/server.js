@@ -47,6 +47,7 @@ app.get("/date.js", (request, response) => {
 
 
 app.get("/getBooks.json", (request, response) => {
+  console.log(books);
   response.send(getBooks(books))
 })
 

@@ -12,6 +12,9 @@
   <button id="button2" onclick="getBooks()">Downloads books</button>
   <div id="dataStorage2"></div>
 
+  <button id="button3" onclick="getBooks2()">Downloads books</button>
+  <div id="dataStorage3"></div>
+
   <script>
     function loadData() {
       const xhr = new XMLHttpRequest();
@@ -57,6 +60,21 @@
       };
       xhr.send();
     }
+
+    // or
+
+    function getBooks2() {
+      fetch('getBooks.json').
+      then(function(response) {
+        return response.text()
+      })
+    .then(data => {
+        // list of repositories
+        document.getElementById("dataStorage3").innerHTML = data;
+    });
+
+    }
+
 
   </script>
 
