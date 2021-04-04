@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <button id="button1" onclick="loadData()">Vote!</button>
+  <div id="dataStorage1"></div>
+
+  <button id="button2" onclick="getBooks()">Downloads books</button>
+  <div id="dataStorage2"></div>
+
+  <script>
+    function loadData() {
+      const xhr = new XMLHttpRequest();
+
+      // xhr.open('GET', 'data.txt', true);  // set wrong file
+      // xhr.open('GET', 'https://rubygarage.github.io/', true); // responce headers: access-control-allow-origin: *
+      // xhr.open('GET', 'https://www.w3schools.com/js/js_ajax_intro.asp', true); // x-frame-options: SAMEORIGIN
+
+     // xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/3', true);
+
+      xhr.open('GET', 'date.js', true);
+
+      xhr.onreadystatechange = function() { // (3)
+        if (xhr.readyState != 4) return;
+
+        if (xhr.status != 200) {
+          // error processing
+          alert('Error ' + xhr.status + ': ' + xhr.statusText);
+        } else {
+          // display result            
+          document.getElementById("button1").innerHTML = xhr.responseText;
+        }
+      };
+      xhr.send();
+    }
+
+    function getBooks() {
+      const xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'getBooks.json', true);
+
+      xhr.onreadystatechange = function() { // (3)
+        if (xhr.readyState != 4) return;
+
+        if (xhr.status != 200) {
+          // error processing
+          alert('Error ' + xhr.status + ': ' + xhr.statusText);
+        } else {
+          // display result
+          document.getElementById("dataStorage2").innerHTML = xhr.responseText;
+        }
+      };
+      xhr.send();
+    }
+
+  </script>
+
+</body>
+
+</html>

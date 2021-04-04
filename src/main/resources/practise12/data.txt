@@ -1,0 +1,7 @@
+
+
+<h1>What is Ajax?</h1>
+
+<p>Ajax stands for Asynchronous Javascript And Xml. Ajax is just a means of loading data from the server and selectively updating parts of a web page without reloading the whole page.</p>
+
+<p>Basically, what Ajax does is make use of the browser's built-in XMLHttpRequest (XHR) object to send and receive information to and from a web server asynchronously, in the background, without blocking the page or interfering with the user's experience.</p>
