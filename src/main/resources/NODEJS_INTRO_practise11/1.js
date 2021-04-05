@@ -1,17 +1,20 @@
+
 const express = require('express');
 const  msg = require('./personalmodule.js');
-const os = require("os");
+const  info = require('./systemInfo.js');
+var os = require("os");
+const path = require('path');
 
 const app = express();
 const port = 5000;
 
 app.get("/1", (request, response) => {
-response.sendFile(__dirname + '/file.html')
+    response.send(msg(info(os, path)));
 })
 
 app.get("/2", (request, response) => {
 
-    response.send(msg(os.hostname()))
+    response.send(msg(os));
 })
 
 app.listen(port, (err) => {

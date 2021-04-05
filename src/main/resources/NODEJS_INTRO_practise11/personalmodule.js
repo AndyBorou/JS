@@ -1,4 +1,7 @@
-const f = function (name) {
+const f = function (os) {
+
+    let name = os.userInfo().username;
+
     let currentTime = new Date();
     let hours = currentTime.getHours();
     currentTime = currentTime.toUTCString();
