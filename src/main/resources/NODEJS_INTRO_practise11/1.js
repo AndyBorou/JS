@@ -1,10 +1,10 @@
 
 const express = require('express');
-const  msg = require('./personalmodule.js');
+const  msg = require('./personalmodule2.js');
 const  info = require('./systemInfo.js');
 var os = require("os");
 const path = require('path');
-
+let name = os.userInfo().username;
 const app = express();
 const port = 5000;
 
@@ -14,7 +14,7 @@ app.get("/1", (request, response) => {
 
 app.get("/2", (request, response) => {
 
-    response.send(msg(os));
+    response.send(msg(name));
 })
 
 app.listen(port, (err) => {
