@@ -6,34 +6,22 @@ const assert = require('assert');
     try {
         await driver.get('http://the-internet.herokuapp.com/tables');
 
-        await driver.scfindElement(By.id("first-name")).sendKeys("Peter");
+        await driver.findElement(By.xpath(".//*[@id='table2']//*[contains(text(), 'Due')]")).click();
 
-        await driver.findElement(By.id("last-name")).sendKeys("Peterson");
+        let numbers;
+        await driver.findElements(By.xpath(".//*[@id='table2']//td[@class='dues']")).then((res)=> numbers=res);
 
-        await driver.findElement(By.id("job-title")).sendKeys("tester");
+        for(let i = 0; i<numbers.length-1; i++){
+            let price1;
+            let price2;
+            await numbers[i].getText().then((res)=> price1 = res);
+            price1 = Number(price1.slice(1));
 
-        await driver.findElement(By.id("radio-button-1")).click();
+            await numbers[i+1].getText().then((res)=> price2 = res);
+            price2 = Number(price2.slice(1));
 
-        await driver.findElement(By.id("checkbox-1")).click();
-
-        await driver.findElement(By.id("select-menu")).click();
-
-        await driver.findElement(By.xpath(".//option[contains(text(), '2-4')]")).click();
-
-        await driver.findElement(By.id("datepicker")).sendKeys("12/12/2020");
-
-        await driver.findElement(By.xpath(".//a[contains(text(), 'Submit')]")).click();
-
-        await driver.findElement(By.xpath(".//a[contains(text(), 'Submit')]")).click();
-
-        // await driver.wait(until.elementLocated(By.css('.alert-success')), 5000);
-        await driver.manage().setTimeouts( { implicit: 10000 } );
-
-
-        let resalt;
-        await driver.findElement(By.className("alert")).getText().then((res)=>{console.log(res); resalt = res});
-
-        assert.equal(resalt, "The form was successfully submitted!");
+            assert.equal( (price1<price2 || price1 == price2), true);
+        }
 
     } finally {
         await driver.quit();

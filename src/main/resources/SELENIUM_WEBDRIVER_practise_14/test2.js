@@ -1,29 +1,45 @@
-const {Builder, By, Key} = require('selenium-webdriver');
-const assert = require('assert');
+require('chromedriver');
 
-(async function example() {
-    let driver = await new Builder().forBrowser('chrome').build();
-    try {
+const assert = require('assert');
+
+// suite name
+const {Builder, Key, By, until} = require('selenium-webdriver');
+// test name
+describe('Checkout Google.com', function() {
+    let  driver;
+    before(async function() {
+        driver = await new Builder().forBrowser('chrome').build();
+    });
+
+    it('Search on Google', async function() {
         await driver.get('http://the-internet.herokuapp.com/hovers');
-        let el = await driver.findElement(By.xpath(".//img[@src][@alt='User Avatar']"));
-        // await driver.actions().mouseMove(el).click().perform();
+        await driver.sleep(2000); // just for demonstration
+
+        let el;
+        await driver.findElement(By.xpath(".//img[@src][@alt='User Avatar']")).then(res=> el = res);
+
+        console.log("! " + el.length);
+
+        // const actions = driver.actions({async: true});
         //
-        // await driver.findElement(By.xpath(".//img[@src][@alt='User Avatar']")).then( (elem) =>{
-        //     // driver.actions().move(elem).click().perform();
-        //         driver.actions().mouseMove(elem).click().perform()
-        // }
-        // )
+        // await actions.mouseMove(el).perform();
 
+        await el.click();
 
-        await driver.actions().
-        mouseMove(el).
-        doubleClick().
-        perform();
+        let info;
+        await driver.findElement(By.xpath(".//div[@class='figcaption']/h5")).then((res)=> info=res);
 
-        console.log(el);
-        // await driver.actions().mouseMove(el).perform();
+        await driver.wait(until.elementIsVisible(info), 5000);
 
-    } finally {
-        //  await driver.quit();
-    }
-})();
+        let result = await info.isDisplayed().then(res=> res);
+
+        assert.equal(result, true);
+
+        result = await info.getText().then(res=> res)
+
+        assert.equal(result, "name: user1");
+
+    });
+
+    after(() => driver && driver.quit());
+});

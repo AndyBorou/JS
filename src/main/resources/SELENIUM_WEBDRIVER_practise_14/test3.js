@@ -1,4 +1,4 @@
-const {Builder, By, Key} = require('selenium-webdriver');
+const {Builder, Key, By, until} = require('selenium-webdriver');
 const assert = require('assert');
 
 (async function example() {
@@ -26,8 +26,8 @@ const assert = require('assert');
 
         await driver.findElement(By.xpath(".//a[contains(text(), 'Submit')]")).click();
 
-        // await driver.wait(until.elementLocated(By.css('.alert-success')), 5000);
-        await driver.manage().setTimeouts( { implicit: 10000 } );
+         await driver.wait(until.elementLocated(By.css('.alert-success')), 5000);
+        //await driver.manage().setTimeouts( { implicit: 10000 } );
 
 
         let resalt;
