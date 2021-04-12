@@ -18,13 +18,13 @@ describe('Checkout Google.com', function() {
         let el;
         await driver.findElement(By.xpath(".//img[@src][@alt='User Avatar']")).then(res=> el = res);
 
-        console.log("! " + el.length);
+        console.log("! " + el);
 
-        // const actions = driver.actions({async: true});
-        //
-        // await actions.mouseMove(el).perform();
+        const actions = driver.actions({async: true});
 
-        await el.click();
+        await actions.move({x: 150, y: 150}).perform();
+
+        await driver.sleep(2000);
 
         let info;
         await driver.findElement(By.xpath(".//div[@class='figcaption']/h5")).then((res)=> info=res);
