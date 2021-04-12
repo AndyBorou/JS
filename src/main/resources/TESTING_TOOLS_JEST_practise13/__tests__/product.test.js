@@ -3,8 +3,8 @@ const proces = require("../calcCircle");
 
 // ====================1======
 describe("My Test suite1", () => {
-    test('sum 0.2 + 0.3 is 0.5', () => {
-    expect(sum(0.2, 0.3)).toBe(0.5);
+    test('sum 0.1 + 0.2 is 0.3', () => {
+    expect(sum(0.1, 0.2)).toBe(0.3);
 });
 })
 
